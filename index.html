@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>Explore Prim3</title>
+<script src="https://aframe.io/aframe/dist/aframe-master.min.js"></script>
+<script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
+<script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script> 
+<script src="maze3d.js"></script>
+	</head>
+	<body>
+<a-scene vr-mode-ui="enabled: false;" background="color: #000000;" renderer="colorManagement: true;">
+
+	<a-assets>
+		<img id="square-texture" src="square.png">
+	</a-assets>
+
+<!-- Floor -->
+<a-box width="2" height="0.1" depth="2" color="#000020" position="0 0 0" class="clickable"></a-box>
+
+<a-entity position="-1 0 -5" scale="0.5 0.5 0.5" rotation="0 0 0">
+	<a-entity
+		id="maze3d"
+		maze3d="width:4; height:4; depth:4;"
+	></a-entity>
+</a-entity>
+
+<a-plane rotation="0 0 0" position="0 2 -4" width="1" height="1" material="color:#ff0000"></a-plane>
+
+<!-- <a-entity camera look-controls position="0 1.8 3"></a-entity> -->
+<a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #800020"></a-entity>
+<a-entity
+	id="rightHand"
+	hand-controls="hand: right; handModelStyle: lowPoly; color: #200080"
+	aabb-collider="objects: .collidable; debug: false;"
+	haptics="events: hitstart; dur: 100; force: 0.5;"
+></a-entity>
+
+	<a-light type="directional" color="#FFF" intensity="0.45" position="4 2 1"></a-light>
+	<a-light type="ambient" color="#A8A8A8"></a-light>
+</a-scene>
+	</body>
+</html>

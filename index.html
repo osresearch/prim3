@@ -2,6 +2,7 @@
 	<head>
 		<title>Explore Prim3</title>
 <script src="https://aframe.io/aframe/dist/aframe-master.min.js"></script>
+<script src="extended-wasd-controls.js"></script>
 <script src="maze3d.js"></script>
 	</head>
 	<body>
@@ -14,7 +15,7 @@
 <!-- Floor -->
 <a-box width="2" height="0.1" depth="2" color="#000020" position="0 0 0" class="clickable"></a-box>
 
-<a-entity position="-1 0 -5" scale="0.5 0.5 0.5" rotation="0 0 0">
+<a-entity position="-1 0 -5" scale="5 5 5" rotation="0 0 0">
 	<a-entity
 		id="maze3d"
 		maze3d="width:4; height:4; depth:4;"
@@ -27,11 +28,21 @@
 
 <a-entity
 	camera
-	look-controls
-	wasd-controls="fly: true;
-		movementEasing: 15;
-		movementAcceleration: 80;"
-       	position="0 1 0">
+	xxxlook-controls
+	extended-wasd-controls="
+		coordinateLookControls: true;
+		maxLookEnabled: false;
+		flyEnabled:	true;
+		turnLeftKey:	A;
+		turnRightKey:	D;
+		lookUpKey:	W;
+		lookDownKey:	S;
+		moveForwardKey:	Space;
+		moveLeftKey:	NONE;
+		moveRightKey:	NONE;
+		moveBackwardKey: NONE;
+       	"
+	position="0 1 0">
 </a-entity>
 
 <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #800020"></a-entity>

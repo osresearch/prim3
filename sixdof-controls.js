@@ -1,5 +1,7 @@
-// from https://stemkoski.github.io/A-Frame-Examples/
-AFRAME.registerComponent('extended-wasd-controls', {
+// derived from https://stemkoski.github.io/A-Frame-Examples/
+// extended to do quaternion math so that it can work with
+// a full six degrees of freedom
+AFRAME.registerComponent('sixdof-controls', {
 
 	schema: 
 	{

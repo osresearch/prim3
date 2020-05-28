@@ -2,7 +2,7 @@
 	<head>
 		<title>Explore Prim3</title>
 <script src="https://aframe.io/aframe/dist/aframe-master.min.js"></script>
-<script src="extended-wasd-controls.js"></script>
+<script src="sixdof-controls.js"></script>
 <script src="maze3d.js"></script>
 	</head>
 	<body>
@@ -29,18 +29,23 @@
 <a-entity
 	camera
 	xxxlook-controls
-	extended-wasd-controls="
+	sixdof-controls="
 		coordinateLookControls: true;
 		maxLookEnabled: false;
 		flyEnabled:	true;
-		turnLeftKey:	A;
-		turnRightKey:	D;
-		lookUpKey:	W;
-		lookDownKey:	S;
-		moveForwardKey:	Space;
-		moveLeftKey:	NONE;
-		moveRightKey:	NONE;
-		moveBackwardKey: NONE;
+		turnLeftKey:	ArrowLeft;
+		turnRightKey:	ArrowRight;
+		lookUpKey:	ArrowUp;
+		lookDownKey:	ArrowDown;
+		moveForwardKey:	W;
+		moveLeftKey:	A;
+		moveRightKey:	D;
+		moveBackwardKey: S;
+		moveUpKey:	Q;
+		moveDownKey:	E;
+		moveSpeed:	4;
+		turnSpeed:	90;
+		lookSpeed:	90;
        	"
 	position="0 1 0">
 </a-entity>

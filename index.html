@@ -12,13 +12,16 @@
 		<img id="square-texture" src="square.png">
 	</a-assets>
 
-<!-- Floor -->
-<a-box width="2" height="0.1" depth="2" color="#000020" position="0 0 0" class="clickable"></a-box>
+	<a-sky color="#A00060"></a-sky>
 
-<a-entity position="-1 0 -5" scale="5 5 5" rotation="0 0 0">
+<a-entity
+	position="-10 -10 -10"
+	scale="5 5 5"
+	rotation="0 0 0"
+>
 	<a-entity
 		id="maze3d"
-		maze3d="width:4; height:4; depth:4;"
+		maze3d="width:5; height:5; depth:5;"
 	></a-entity>
 </a-entity>
 
@@ -28,7 +31,7 @@
 
 <a-entity
 	camera
-	xxxlook-controls
+	xxx-look-controls
 	sixdof-controls="
 		coordinateLookControls: true;
 		maxLookEnabled: false;

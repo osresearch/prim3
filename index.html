@@ -4,6 +4,7 @@
 <script src="https://aframe.io/aframe/dist/aframe-master.min.js"></script>
 <script src="sixdof-controls.js"></script>
 <script src="maze3d.js"></script>
+<script src="breadcrumb.js"></script>
 	</head>
 	<body>
 <a-scene vr-mode-ui="enabled: false;" background="color: #000000;" renderer="colorManagement: true;">
@@ -30,6 +31,7 @@
 -->
 
 <a-entity
+	id="camera"
 	camera
 	xxx-look-controls
 	sixdof-controls="
@@ -50,8 +52,12 @@
 		turnSpeed:	90;
 		lookSpeed:	90;
        	"
-	position="0 1 0">
+	position="0 1 0"
+>
 </a-entity>
+	<a-entity
+		breadcrumb="target:#camera"
+	></a-entity>
 
 <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #800020"></a-entity>
 <a-entity

@@ -204,8 +204,9 @@ AFRAME.registerComponent('maze3d', {
 		}
 
 		// Add an entrance and exit.
-		this.maze[0][Math.floor(h/2)][Math.floor(d/2)] |= 1;
-		this.maze[w-1][this.rand(h/2)][d-1] |= 2;
+		//this.maze[0][Math.floor(h/2)][Math.floor(d/2)] |= 1;
+		this.maze[0][2][2] |= 1;
+		this.maze[w-1][Math.floor(h/2)][Math.floor(d/2)] |= 2;
 	},
 
 	// add all of the neighbors to the processing queue

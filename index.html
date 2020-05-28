@@ -5,6 +5,7 @@
 <script src="sixdof-controls.js"></script>
 <script src="maze3d.js"></script>
 <script src="breadcrumb.js"></script>
+<script src="headlamp.js"></script>
 	</head>
 	<body>
 <a-scene vr-mode-ui="enabled: false;" background="color: #000000;" renderer="colorManagement: true;">
@@ -16,9 +17,9 @@
 	<a-sky color="#A00060"></a-sky>
 
 <a-entity
-	position="-10 -10 -10"
+	position="-10 -10 -20"
 	scale="5 5 5"
-	rotation="0 0 0"
+	rotation="0 90 0"
 >
 	<a-entity
 		id="maze3d"
@@ -32,7 +33,9 @@
 
 <a-entity
 	id="camera"
-	camera
+	camera="
+		fov:75;
+	"
 	xxx-look-controls
 	sixdof-controls="
 		coordinateLookControls: true;
@@ -52,12 +55,22 @@
 		turnSpeed:	90;
 		lookSpeed:	90;
        	"
-	position="0 1 0"
+	position="0 0 0"
 >
 </a-entity>
-	<a-entity
-		breadcrumb="target:#camera"
-	></a-entity>
+<a-entity
+	breadcrumb="target:#camera"
+></a-entity>
+<a-light
+	color="white"
+	headlamp="target: #camera"
+></a-light>
+<a-light
+	color="#fff"
+	type="point"
+	angle="10"
+	headlamp="target: #camera"
+></a-light>
 
 <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #800020"></a-entity>
 <a-entity
@@ -67,8 +80,11 @@
 	haptics="events: hitstart; dur: 100; force: 0.5;"
 ></a-entity>
 
+<!--
 	<a-light type="directional" color="#FFF" intensity="0.45" position="4 2 1"></a-light>
 	<a-light type="ambient" color="#A8A8A8"></a-light>
+-->
+
 </a-scene>
 	</body>
 </html>

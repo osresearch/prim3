@@ -97,11 +97,14 @@ AFRAME.registerComponent('sixdof-controls', {
 				'triggerdown', (evt) => self.trigger = 1);
 			this.data.handControl.addEventListener(
 				'triggerup', (evt) => self.trigger = 0);
+			this.data.handControl.addEventListener(
+				'axismove', (evt) => self.axis = evt.axis);
 		}
 
 		// movement-related data
 
 		this.trigger = 0;
+		this.axis = 0;
 		this.fore = new THREE.Vector3(0,0,0);
 		this.side = new THREE.Vector3(0,0,0);
 		this.up = new THREE.Vector3(0,0,0);
@@ -175,6 +178,14 @@ AFRAME.registerComponent('sixdof-controls', {
 			this.direction.add(this.side);
 		if (this.isKeyPressed(this.data.moveLeftKey))
 			this.direction.sub(this.side);
+
+		if (this.axis)
+		{
+			this.fore.multiplyScalar(this.axis[0])
+			this.side.multiplyScalar(this.axis[1])
+			this.direction.sub(this.fore);
+			this.direction.sub(this.side);
+		}
 
 		if (this.data.flyEnabled)
 		{

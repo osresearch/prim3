@@ -31,6 +31,7 @@
 <a-plane rotation="0 0 0" position="0 2 -4" width="1" height="1" material="color:#ff0000"></a-plane>
 -->
 
+<a-entity id="rig">
 <a-entity
 	id="camera"
 	camera="
@@ -56,20 +57,21 @@
 		lookSpeed:	120;
        	"
 	position="0 0 0"
->
+></a-entity>
 </a-entity>
+
 <a-entity
-	breadcrumb="target:#camera"
+	breadcrumb="target:#rig"
 ></a-entity>
 <a-light
 	color="white"
-	headlamp="target: #camera"
+	headlamp="target: #rig"
 ></a-light>
 <a-light
 	color="#fff"
 	type="point"
 	angle="10"
-	headlamp="target: #camera"
+	headlamp="target: #rig"
 ></a-light>
 
 <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #800020"></a-entity>

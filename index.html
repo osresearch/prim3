@@ -34,6 +34,7 @@
 <a-entity id="rig"
 	sixdof-controls="
 		lookControl:	#camera;
+		handControl:	#hand-left;
 		turnLeftKey:	ArrowLeft;
 		turnRightKey:	ArrowRight;
 		lookUpKey:	ArrowUp;
@@ -70,12 +71,13 @@
 	headlamp="target: #rig"
 ></a-light>
 
-<a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly; color: #800020"></a-entity>
 <a-entity
-	id="rightHand"
+	id="hand-left"
+	hand-controls="hand: left; handModelStyle: lowPoly; color: #800020"
+></a-entity>
+<a-entity
+	id="hand-right"
 	hand-controls="hand: right; handModelStyle: lowPoly; color: #200080"
-	aabb-collider="objects: .collidable; debug: false;"
-	haptics="events: hitstart; dur: 100; force: 0.5;"
 ></a-entity>
 
 <!--

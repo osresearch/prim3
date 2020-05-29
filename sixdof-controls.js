@@ -34,6 +34,7 @@ AFRAME.registerComponent('sixdof-controls', {
 		lookSpeed: {type: 'number', default: 30}, // degrees/second
 
 		lookControl: {type: 'selector' },
+		handControl: {type: 'selector' },
 	},
 
 	convertKeyName: function(keyName)
@@ -90,8 +91,17 @@ AFRAME.registerComponent('sixdof-controls', {
 			} 
 		);
 
+		if (this.data.handControl)
+		{
+			this.data.handControl.addEventListener(
+				'triggerdown', (evt) => self.trigger = 1);
+			this.data.handControl.addEventListener(
+				'triggerup', (evt) => self.trigger = 0);
+		}
+
 		// movement-related data
 
+		this.trigger = 0;
 		this.fore = new THREE.Vector3(0,0,0);
 		this.side = new THREE.Vector3(0,0,0);
 		this.up = new THREE.Vector3(0,0,0);
@@ -155,7 +165,8 @@ AFRAME.registerComponent('sixdof-controls', {
 
 		this.direction.set(0,0,0)
 
-		if (this.isKeyPressed(this.data.moveForwardKey))
+		if (this.isKeyPressed(this.data.moveForwardKey)
+		||  this.trigger)
 			this.direction.sub(this.fore);
 		if (this.isKeyPressed(this.data.moveBackwardKey))
 			this.direction.add(this.fore);

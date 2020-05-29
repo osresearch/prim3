@@ -31,13 +31,7 @@
 <a-plane rotation="0 0 0" position="0 2 -4" width="1" height="1" material="color:#ff0000"></a-plane>
 -->
 
-<a-entity id="rig">
-<a-entity
-	id="camera"
-	camera="
-		fov:75;
-	"
-	xxx-look-controls
+<a-entity id="rig"
 	sixdof-controls="
 		coordinateLookControls: true;
 		maxLookEnabled: false;
@@ -57,6 +51,10 @@
 		lookSpeed:	120;
        	"
 	position="0 0 0"
+>
+<a-entity
+	id="camera"
+	camera="fov:75;"
 ></a-entity>
 </a-entity>
 

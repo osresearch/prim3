@@ -26,24 +26,14 @@ AFRAME.registerComponent('sixdof-controls', {
 		lookUpKey:       {type: 'string', default: "T"},
 		lookDownKey:     {type: 'string', default: "G"},
 		
-  		flyEnabled:  {type: 'boolean', default: true},
   		turnEnabled: {type: 'boolean', default: true},
   		lookEnabled: {type: 'boolean', default: true},
 
-  		// if you are attaching extended-wasd-controls to a camera
-  		//   that also has the look-controls component,
-  		//   set this to true to use look-controls from rotation to calculate forward/right vectors.
-  		// For responsive magic window effect on tablets, set turnEnabled/lookEnabled to false also.
-  		coordinateLookControls: {type: 'boolean', default: false},
-
-  		// consider setting to maxLook to false when working with look controls;
-  		//   complicated to handle the combination accurately
-  		maxLookEnabled: {type: 'boolean', default: true},
-  		maxLookAngle: {type: 'number', default: 60},
-
   		moveSpeed: {type: 'number', default: 1},  // A-Frame units/second
 		turnSpeed: {type: 'number', default: 30}, // degrees/second
-		lookSpeed: {type: 'number', default: 30}  // degrees/second
+		lookSpeed: {type: 'number', default: 30}, // degrees/second
+
+		lookControl: {type: 'selector' },
 	},
 
 	convertKeyName: function(keyName)
@@ -80,6 +70,11 @@ AFRAME.registerComponent('sixdof-controls', {
 		this.keyPressedSet = new Set();
 				
 		let self = this;
+
+		// if the lookControl is not specified, then
+		// use this object itself
+		if (!this.data.lookControl)
+			this.data.lookControl = this.el;
 		
 		document.addEventListener( "keydown", 
 			function(eventData) 
@@ -101,13 +96,6 @@ AFRAME.registerComponent('sixdof-controls', {
 		this.side = new THREE.Vector3(0,0,0);
 		this.up = new THREE.Vector3(0,0,0);
 		this.direction = new THREE.Vector3(0,0,0);
-		
-		this.lookControls = null;
-
-		if (this.data.coordinateLookControls)
-		{
-			this.lookControls = this.el.components["look-controls"];
-		}
 	},
 	
 
@@ -154,8 +142,11 @@ AFRAME.registerComponent('sixdof-controls', {
 		camera.rotateX(look_x);
 		camera.rotateY(look_y);
 
-		// translate along the camera
-		camera.matrix.extractBasis(
+		// translate along the look entity,
+		// or if not specified, then the camera
+		var look = this.data.lookControl.object3D;
+
+		look.matrix.extractBasis(
 			this.side,
 			this.up,
 			this.fore,

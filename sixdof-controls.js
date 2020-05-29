@@ -118,7 +118,9 @@ AFRAME.registerComponent('sixdof-controls', {
 
 		let look_x = 0;
 		let look_y = 0;
-		let camera = this.el.object3D;
+
+		let rig = this.el.object3D;
+		var camera = this.data.lookControl.object3D;
 
 		if ( this.data.lookEnabled )
 		{
@@ -138,15 +140,14 @@ AFRAME.registerComponent('sixdof-controls', {
 				look_y = -turnAmount;
 		}
 
+
 		// this rotates the camera about its local axis
 		camera.rotateX(look_x);
 		camera.rotateY(look_y);
 
-		// translate along the look entity,
-		// or if not specified, then the camera
-		var look = this.data.lookControl.object3D;
-
-		look.matrix.extractBasis(
+		// update the rig's position based on the camera's
+		// orientation
+		camera.matrix.extractBasis(
 			this.side,
 			this.up,
 			this.fore,
@@ -174,6 +175,6 @@ AFRAME.registerComponent('sixdof-controls', {
 		}
 
 		this.direction.multiplyScalar(moveAmount);
-		camera.position.add(this.direction);
+		rig.position.add(this.direction);
 	}
 });

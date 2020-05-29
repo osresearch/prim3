@@ -49,12 +49,22 @@
 		turnSpeed:	100;
 		lookSpeed:	120;
        	"
-	position="0 0 0"
+	position="0 1.6 0"
 >
-<a-entity
-	id="camera"
-	camera="fov:75;"
-></a-entity>
+	<!-- the hands and camera have to be rigged together -->
+	<a-entity
+		id="camera"
+		camera="fov:75;"
+	></a-entity>
+	<a-entity
+		id="hand-left"
+		hand-controls="hand: left; handModelStyle: lowPoly; color: #800020"
+	></a-entity>
+	<a-entity
+		id="hand-right"
+		hand-controls="hand: right; handModelStyle: lowPoly; color: #200080"
+	></a-entity>
+
 </a-entity>
 
 <a-entity
@@ -70,15 +80,6 @@
 	angle="10"
 	headlamp="target: #rig"
 ></a-light>
-
-<a-entity
-	id="hand-left"
-	hand-controls="hand: left; handModelStyle: lowPoly; color: #800020"
-></a-entity>
-<a-entity
-	id="hand-right"
-	hand-controls="hand: right; handModelStyle: lowPoly; color: #200080"
-></a-entity>
 
 <!--
 	<a-light type="directional" color="#FFF" intensity="0.45" position="4 2 1"></a-light>
